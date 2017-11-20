@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <div id="root">
+        <ul>
+            <li v-for="name in names">{{ name }}</li>
+        </ul>
+        <input type="text" v-model="newName">
+        <button @click="addName">Add Name</button>
+    </div>
+    <script src="https://unpkg.com/vue@2.5.6/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el: "#root",
+            data: {
+                newName: "",
+                names: ["Tony Stark", "Nick Fury", "Bruce Banner", "Phil Coulson"]
+            },
+            methods: {
+                addName() {
+                    this.names.push(this.newName);
+                    this.newName = "";
+                }
+            }
+        })
+    </script>
+</body>
+</html>
