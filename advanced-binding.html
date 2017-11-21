@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <style type="text/css">
+        .color-red { color: red; }
+        .is-loading { background: red; }
+    </style>
+</head>
+<body>
+    <div id="root">
+        <h1 :class="className">Hello World</h1>
+        <button :title="title">Hover Over Me</button>
+        <button :class=" { 'is-loading': isLoading } " @click="toggleIsLoading">Click Me</button>
+    </div>
+    <script src="https://unpkg.com/vue@2.5.6/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el: "#root",
+            data: {
+                className: "color-red",
+                title: "Now the title is being set via JavaScript.",
+                isLoading: false
+            },
+            methods: {
+                toggleIsLoading() {
+                    this.isLoading = ! this.isLoading;
+                }
+            }
+        })
+    </script>
+</body>
+</html>
