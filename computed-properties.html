@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <div id="root">
+        <h2 v-text="new Date()"></h2>
+        <h2>{{ reversedMessage }}</h2>
+        <h2>All Tasks</h2>
+        <ul>
+            <li v-for="task in tasks" v-text="task.description"></li>
+        </ul>
+        <h2>Completed Tasks</h2>
+        <ul>
+            <li v-for="task in tasks" v-if="task.completed" v-text="task.description"></li>
+        </ul>
+        <h2>Pending Tasks</h2>
+        <ul>
+            <li v-for="task in incompleteTasks" v-text="task.description"></li>
+        </ul>
+    </div>
+    <script src="https://unpkg.com/vue@2.5.6/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el: "#root",
+            data: {
+                message: "Hello, Vue",
+                tasks: [
+                    { description: "Start learning Vue", completed: true },
+                    { description: "Prepare a talk", completed: false },
+                    { description: "Have dinner", completed: false }
+                ]
+            },
+            computed: {
+                reversedMessage() {
+                    return this.message.split('').reverse().join('');
+                },
+                incompleteTasks() {
+                    return this.tasks.filter(task => !task.completed);
+                }
+            }
+        })
+    </script>
+</body>
+</html>
