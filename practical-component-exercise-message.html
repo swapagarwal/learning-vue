@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.css">
+    <style type="text/css">
+    body {
+        padding-top: 40px;
+    }
+    </style>
+</head>
+
+<body>
+    <div id="root" class="container">
+        <message title="Hello World" body="Lorem ipsum dolor sit amet."></message>
+        <message title="Hello Universe" body="Bla Bla Bla."></message>
+    </div>
+    <script src="https://unpkg.com/vue@2.5.6/dist/vue.js"></script>
+    <script>
+    Vue.component('message', {
+        props: ['title', 'body'],
+        data() {
+            return {
+                isVisible: true
+            };
+        },
+        template: `
+        <article class="message" v-show="isVisible">
+            <div class="message-header">
+                <p>{{ title }}</p>
+                <button @click="hideModal" class="delete" aria-label="delete"></button>
+                <button @click="isVisible=false" class="delete" aria-label="delete"></button>
+            </div>
+            <div class="message-body">
+                {{ body }}
+            </div>
+        </article>
+        `,
+        methods: {
+            hideModal() {
+                this.isVisible = false;
+            }
+        }
+    });
+    new Vue({
+        el: "#root"
+    })
+    </script>
+</body>
+
+</html>
