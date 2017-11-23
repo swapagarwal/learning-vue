@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <div id="root">
+        <task-list>
+    </div>
+    <script src="https://unpkg.com/vue@2.5.6/dist/vue.js"></script>
+    <script>
+        Vue.component('task-list', {
+            template: `
+                <ul>
+                    <task v-for="task in tasks">
+                        {{ task.description }}
+                    </task>
+                </ul>
+            `,
+            data() {
+                return {
+                    tasks: [
+                        { description: "Start learning Vue", completed: true },
+                        { description: "Prepare a talk", completed: false },
+                        { description: "Have dinner", completed: false }
+                    ]
+                };
+            }
+        });
+        Vue.component('task', {
+            template: '<li><slot></slot></li>'
+        });
+        new Vue({
+            el: "#root"
+        });
+    </script>
+</body>
+</html>
